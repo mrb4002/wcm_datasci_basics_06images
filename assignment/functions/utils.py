@@ -1,7 +1,7 @@
 # Utility functions for processing .csv data in assignment 6
 
 import natsort
-from glob import glob
+import glob
 import numpy as np
 import pandas as pd
 
@@ -16,7 +16,6 @@ def get_files(path_pattern):
         
     return files
 
-data_files_list = get_files(data_pattern)
 
 
 # realign dataframes
