@@ -1,11 +1,11 @@
-from ..functions.utils import find_middle
-from ..functions.utils import realign_data
-
-import unittest
 import numpy as np
 import pandas as pd
 
-class TestMethods(unittest.TestCase):
+
+from ..functions.utils import find_middle
+from ..functions.utils import realign_data
+
+class TestMethods():
 
     def test_find_middle_odd(self):
         test_array = np.arange(9)
@@ -27,8 +27,6 @@ class TestMethods(unittest.TestCase):
         true_shift = np.array([0, 2])
         test_df = pd.DataFrame([d1, d2]).fillna(0)
         test_df = test_df.T
-        d, shift = realign_data(test_df)
-        np.testing.assert_array_equal(true_shift, shift)
+        d, shifts = realign_data(test_df)
+        np.testing.assert_array_equal(true_shift, shifts)
 
-if __name__ == '__main__':
-    unittest.main()
