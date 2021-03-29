@@ -10,11 +10,14 @@ def get_files(path_pattern):
     if isinstance(path_pattern, list):
         path_pattern = os.path.join(*path_pattern)
 
-    files = natsort.natsorted(glob(path_pattern))
+    files = natsort.natsorted(glob.glob(path_pattern))
     if not files:
         raise FileNotFoundError('Pattern could not detect file(s)')
         
     return files
+
+data_files_list = get_files(data_pattern)
+
 
 # realign dataframes
 
@@ -61,4 +64,4 @@ def realign_data(in_data, align = "max"):
             d[column] = in_data[column].shift(periods=mdiff, fill_value=0)
             assert find_middle(d[column]) == mid_longest
             shifts[column] = mdiff
-        return d, shifts
+    return d, shifts
